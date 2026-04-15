@@ -23,7 +23,9 @@ RATE_LIMIT_WAIT = 5
 MAX_RETRIES = 2
 
 SYSTEM_PROMPT = """
-You help students from ALL programmes under FKTE (Faculty of Electrical Engineering & Technology):
+You are an academic assistant chatbot for FKTE UniMAP (Universiti Malaysia Perlis).
+
+You help students from ALL programmes under FKTE:
 
 DEGREE PROGRAMMES:
 - Bachelor of Mechatronic Engineering with Honours (UR6523003)
@@ -40,8 +42,11 @@ CRITICAL RULES:
 - Student portal is OSI at https://osi.unimap.edu.my — NEVER say i-Maaluum
 - Login to OSI using Matrix Number and password
 - Answer in same language as student (Malay or English)
-- Always provide relevant links
-- If unsure, refer to FAQ Centre or relevant contact person
+- ALWAYS give a direct and complete answer first before giving any links
+- NEVER just send a link as the main answer
+- Only provide links AFTER giving full explanation
+- Answer like a knowledgeable academic advisor, not a search engine
+- If unsure of exact details, give best answer based on UniMAP rules then provide link for confirmation
 
 KEY CONTACTS:
 - Head of Department: Assoc. Prof. Dr. Kamarulzaman Kamarudin | kamarulzaman@unimap.edu.my | WhatsApp: https://wa.me/60142307071
@@ -95,133 +100,133 @@ REFERENCE LINKS:
 KNOWLEDGE_BASE = [
     {
         "keywords": ["drop subject", "gugur kursus", "padam subjek", "drop course", "keluar subjek", "borang gugur"],
-        "text": "To drop a subject: Download form HEA(B)-03 from https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms and submit to Assistant Registrar Mdm. Hanimah (hanimah@unimap.edu.my / wa.me/601137243477).",
+        "text": "To drop a subject, you need to download form HEA(B)-03 Borang Pendaftaran Gugur Kursus. Submit the completed form to Assistant Registrar Mdm. Hanimah Karjoo at hanimah@unimap.edu.my or WhatsApp https://wa.me/601137243477. Download form from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
         "source": "Academic Forms",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms"
     },
     {
         "keywords": ["register subject", "daftar subjek", "tambah subjek", "add subject", "course registration", "pendaftaran kursus", "late registration", "lambat daftar"],
-        "text": "Log in to OSI portal at https://osi.unimap.edu.my using your Matrix Number and password to register subjects. For late registration use form HEA(B)-02[b].",
+        "text": "To register subjects, log in to OSI portal at https://osi.unimap.edu.my using your Matrix Number and password. Navigate to Course Registration section. For late registration, you need to fill form HEA(B)-02[b] Borang Pendaftaran Kursus Lewat.",
         "source": "OSI Portal",
         "url": "https://osi.unimap.edu.my"
     },
     {
         "keywords": ["withdraw", "tarik diri", "withdrawal"],
-        "text": "To withdraw from a course, download form HEA(B)-04 Borang Tarik Diri Kursus from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
+        "text": "To withdraw from a course, download form HEA(B)-04 Borang Tarik Diri Kursus. This is different from dropping — withdrawal may result in W grade on transcript. Download from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
         "source": "Academic Forms",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms"
     },
     {
         "keywords": ["defer", "tangguh", "tangguh pengajian", "postpone", "deferment"],
-        "text": "To defer studies, download form HEA(B)-07 Borang Permohonan Tangguh Pengajian from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
+        "text": "To defer your studies, download form HEA(B)-07 Borang Permohonan Tangguh Pengajian. Submit to the academic office for approval. Download from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
         "source": "Academic Forms",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms"
     },
     {
         "keywords": ["curriculum", "course structure", "struktur kursus", "what subject", "intake", "matric"],
-        "text": "Curriculum depends on intake year. Check matric prefix: 20106=2020/21, 21106=2021/22, 22106=2022/23, 23106=2023/24, 24106=2024/25, 25106=2025/26. Details: https://sites.google.com/unimap.edu.my/ur6523003faq/curriculum-structure",
+        "text": "Your curriculum structure depends on your intake year, which can be identified from your matric number prefix: 20106=2020/21, 21106=2021/22, 22106=2022/23, 23106=2023/24, 24106=2024/25, 25106=2025/26. Each intake has different course structure. Full details: https://sites.google.com/unimap.edu.my/ur6523003faq/curriculum-structure",
         "source": "Curriculum Structure",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/curriculum-structure"
     },
     {
         "keywords": ["contact", "hubungi", "siapa", "who", "email", "whatsapp", "phone", "telefon"],
-        "text": "Programme Chairman: Dr. Abdul Halim (ihalim@unimap.edu.my, wa.me/60124542662). Assistant Registrar: Mdm. Hanimah (hanimah@unimap.edu.my, wa.me/601137243477). Head of Dept: Dr. Kamarulzaman (kamarulzaman@unimap.edu.my, wa.me/60142307071).",
+        "text": "Key contacts: Programme Chairman Dr. Abdul Halim (ihalim@unimap.edu.my, wa.me/60124542662). Assistant Registrar Mdm. Hanimah (hanimah@unimap.edu.my, wa.me/601137243477). Head of Dept Dr. Kamarulzaman (kamarulzaman@unimap.edu.my, wa.me/60142307071). FYP: Dr. Hassrizal (hassrizal@unimap.edu.my). IDP: Dr. Khairul (khairulhassan@unimap.edu.my).",
         "source": "Contact Us",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/contact-us"
     },
     {
         "keywords": ["deadline", "tarikh", "calendar", "kalendar", "important date", "tarikh penting"],
-        "text": "Academic Calendar: https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-calendar. For queries contact Shazlina Isakh: shazlina@unimap.edu.my | Tel: +604 941 4060",
+        "text": "All important dates and deadlines are in the Academic Calendar. For Bachelor programmes 2025/2026, check the official calendar. Contact Shazlina Isakh at shazlina@unimap.edu.my or Tel: +604 941 4060 for specific queries. Calendar: https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-calendar",
         "source": "Academic Calendar",
         "url": "https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-calendar"
     },
     {
         "keywords": ["fyp", "final year project", "projek tahun akhir"],
-        "text": "FYP Coordinator: Dr. Hassrizal Hassan Basri | hassrizal@unimap.edu.my | WhatsApp: https://wa.me/601137007588",
+        "text": "For Final Year Project (FYP) matters, contact FYP Coordinator Dr. Hassrizal Hassan Basri directly at hassrizal@unimap.edu.my or WhatsApp https://wa.me/601137007588",
         "source": "Contact Us",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/contact-us"
     },
     {
         "keywords": ["idp", "integrated design project"],
-        "text": "IDP Coordinator: Assoc. Prof. Dr. Muhammad Khairul Ali Hassan | khairulhassan@unimap.edu.my | WhatsApp: https://wa.me/60124226670",
+        "text": "For Integrated Design Project (IDP) matters, contact IDP Coordinator Assoc. Prof. Dr. Muhammad Khairul Ali Hassan at khairulhassan@unimap.edu.my or WhatsApp https://wa.me/60124226670",
         "source": "Contact Us",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/contact-us"
     },
     {
         "keywords": ["transfer program", "tukar program", "pertukaran program", "change programme"],
-        "text": "To transfer programme, download form HEA(B)-06 from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
+        "text": "To transfer to another programme, download form HEA(B)-06 Borang Permohonan Pertukaran Program Pengajian. Submit to academic office for processing. Download from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
         "source": "Academic Forms",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms"
     },
     {
         "keywords": ["osi", "student portal", "portal pelajar", "login", "log in", "sign in"],
-        "text": "Student portal is OSI at https://osi.unimap.edu.my. Login with Matrix Number and password.",
+        "text": "Student portal is called OSI (Online Student Information) at https://osi.unimap.edu.my. Login using your Matrix Number as username and your password. OSI is used for course registration, results, and other academic matters.",
         "source": "OSI Portal",
         "url": "https://osi.unimap.edu.my"
     },
     {
         "keywords": ["credit transfer", "pindahan kredit", "transfer kredit"],
-        "text": "Credit transfer: Vertical use HEA(B)-01[a], Horizontal use HEA(B)-01[b]. Download from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
+        "text": "For credit transfer: Vertical credit transfer use form HEA(B)-01[a], Horizontal credit transfer use form HEA(B)-01[b]. Download both forms from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
         "source": "Academic Forms",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms"
     },
     {
         "keywords": ["timetable", "jadual", "class schedule", "jadual kuliah"],
-        "text": "Class timetable available at: https://sites.google.com/unimap.edu.my/academicunimap/class-timetable",
+        "text": "Class timetable for all FKTE programmes is available at: https://sites.google.com/unimap.edu.my/academicunimap/class-timetable. Check there for your semester schedule.",
         "source": "Class Timetable",
         "url": "https://sites.google.com/unimap.edu.my/academicunimap/class-timetable"
     },
     {
         "keywords": ["dress code", "pakaian", "attire", "uniform"],
-        "text": "Student dress code: https://www.unimap.edu.my/index.php/en/campus-life/reference/student-dress-code",
+        "text": "UniMAP has a strict student dress code policy. Students must dress appropriately on campus. Full dress code guidelines: https://www.unimap.edu.my/index.php/en/campus-life/reference/student-dress-code",
         "source": "Student Dress Code",
         "url": "https://www.unimap.edu.my/index.php/en/campus-life/reference/student-dress-code"
     },
     {
         "keywords": ["guidebook", "buku panduan", "academic guide", "regulation", "peraturan"],
-        "text": "Academic Guidebook: https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-guide-book | Academic Regulation (2025): https://drive.google.com/file/d/1e8ZSr3-khfBDd7LEYUimTcU0vbbjxQf3/view",
+        "text": "Academic Guidebook contains all academic rules and regulations. Download from: https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-guide-book. Latest Academic Regulation (2025): https://drive.google.com/file/d/1e8ZSr3-khfBDd7LEYUimTcU0vbbjxQf3/view",
         "source": "Academic Guidebook",
         "url": "https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-guide-book"
     },
     {
         "keywords": ["stop study", "berhenti", "quit", "keluar universiti", "terminate"],
-        "text": "To stop studies: HEA(B)-08 Borang Permohonan Berhenti. To terminate: HEA(B)-09 Borang Penamatan. Download from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
+        "text": "To stop studies temporarily use form HEA(B)-08 Borang Permohonan Berhenti. For permanent termination use HEA(B)-09 Borang Penamatan Pengajian. Download from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
         "source": "Academic Forms",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms"
     },
     {
         "keywords": ["readmission", "rayuan masuk semula", "reinstatement"],
-        "text": "For readmission, use form HEA(B)-10 Borang Rayuan Kemasukan Semula from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
+        "text": "To apply for readmission after termination, use form HEA(B)-10 Borang Rayuan Kemasukan Semula. Download from: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
         "source": "Academic Forms",
         "url": "https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms"
     }
 ]
 
 FAQ_CACHE = {
-    "how to drop subject": "Download form HEA(B)-03 (Borang Pendaftaran Gugur Kursus) from https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms and submit to Mdm. Hanimah (hanimah@unimap.edu.my).",
-    "cara gugur subjek": "Muat turun borang HEA(B)-03 dari https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms dan hantar kepada Mdm. Hanimah (hanimah@unimap.edu.my).",
-    "how to register subject": "Log in to OSI portal at https://osi.unimap.edu.my using your Matrix Number and password.",
-    "cara daftar subjek": "Log masuk ke portal OSI di https://osi.unimap.edu.my menggunakan Nombor Matrik dan kata laluan.",
-    "student portal": "Student portal is OSI at https://osi.unimap.edu.my. Login with Matrix Number and password.",
-    "portal pelajar": "Portal pelajar adalah OSI di https://osi.unimap.edu.my. Log masuk dengan Nombor Matrik dan kata laluan.",
-    "contact programme chairman": "Assoc. Prof. Dr. Abdul Halim Ismail | ihalim@unimap.edu.my | WhatsApp: https://wa.me/60124542662",
-    "siapa pengerusi program": "Assoc. Prof. Dr. Abdul Halim Ismail | ihalim@unimap.edu.my | WhatsApp: https://wa.me/60124542662",
-    "contact head of department": "Assoc. Prof. Dr. Kamarulzaman Kamarudin | kamarulzaman@unimap.edu.my | WhatsApp: https://wa.me/60142307071",
-    "ketua jabatan": "Assoc. Prof. Dr. Kamarulzaman Kamarudin | kamarulzaman@unimap.edu.my | WhatsApp: https://wa.me/60142307071",
-    "academic forms": "All academic forms: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
-    "borang akademik": "Semua borang akademik: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms",
-    "curriculum structure": "Curriculum by intake: https://sites.google.com/unimap.edu.my/ur6523003faq/curriculum-structure",
-    "struktur kurikulum": "Struktur kurikulum: https://sites.google.com/unimap.edu.my/ur6523003faq/curriculum-structure",
-    "fyp coordinator": "Dr. Hassrizal Hassan Basri | hassrizal@unimap.edu.my | WhatsApp: https://wa.me/601137007588",
-    "idp coordinator": "Assoc. Prof. Dr. Muhammad Khairul Ali Hassan | khairulhassan@unimap.edu.my | WhatsApp: https://wa.me/60124226670",
-    "class timetable": "Class timetable: https://sites.google.com/unimap.edu.my/academicunimap/class-timetable",
-    "jadual kuliah": "Jadual kuliah: https://sites.google.com/unimap.edu.my/academicunimap/class-timetable",
-    "academic calendar": "Academic Calendar: https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-calendar",
-    "kalendar akademik": "Kalendar Akademik: https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-calendar",
-    "dress code": "Student dress code: https://www.unimap.edu.my/index.php/en/campus-life/reference/student-dress-code",
-    "kod pakaian": "Kod pakaian pelajar: https://www.unimap.edu.my/index.php/en/campus-life/reference/student-dress-code",
-    "assistant registrar": "Mdm. Hanimah Karjoo | hanimah@unimap.edu.my | WhatsApp: https://wa.me/601137243477",
-    "penolong pendaftar": "Mdm. Hanimah Karjoo | hanimah@unimap.edu.my | WhatsApp: https://wa.me/601137243477",
+    "how to drop subject": "To drop a subject, download form HEA(B)-03 (Borang Pendaftaran Gugur Kursus) from https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms. Fill it in and submit to Mdm. Hanimah Karjoo at hanimah@unimap.edu.my or WhatsApp https://wa.me/601137243477.",
+    "cara gugur subjek": "Untuk gugur subjek, muat turun borang HEA(B)-03 (Borang Pendaftaran Gugur Kursus) dari https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms. Isi borang dan hantar kepada Mdm. Hanimah di hanimah@unimap.edu.my atau WhatsApp https://wa.me/601137243477.",
+    "how to register subject": "To register subjects, log in to OSI portal at https://osi.unimap.edu.my using your Matrix Number and password. Go to Course Registration section to add your subjects.",
+    "cara daftar subjek": "Untuk daftar subjek, log masuk ke portal OSI di https://osi.unimap.edu.my menggunakan Nombor Matrik dan kata laluan. Pergi ke bahagian Pendaftaran Kursus untuk tambah subjek.",
+    "student portal": "Student portal is OSI (Online Student Information) at https://osi.unimap.edu.my. Login with your Matrix Number and password to access course registration, results and other services.",
+    "portal pelajar": "Portal pelajar adalah OSI di https://osi.unimap.edu.my. Log masuk dengan Nombor Matrik dan kata laluan untuk akses pendaftaran kursus, keputusan dan perkhidmatan lain.",
+    "contact programme chairman": "Programme Chairman is Assoc. Prof. Dr. Abdul Halim Ismail. Email: ihalim@unimap.edu.my | WhatsApp: https://wa.me/60124542662",
+    "siapa pengerusi program": "Pengerusi Program adalah Assoc. Prof. Dr. Abdul Halim Ismail. Email: ihalim@unimap.edu.my | WhatsApp: https://wa.me/60124542662",
+    "contact head of department": "Head of Department is Assoc. Prof. Dr. Kamarulzaman Kamarudin. Email: kamarulzaman@unimap.edu.my | WhatsApp: https://wa.me/60142307071",
+    "ketua jabatan": "Ketua Jabatan ialah Assoc. Prof. Dr. Kamarulzaman Kamarudin. Email: kamarulzaman@unimap.edu.my | WhatsApp: https://wa.me/60142307071",
+    "academic forms": "All academic forms can be downloaded from the FAQ Centre: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms. Forms include drop subject, withdraw, deferment, transfer programme and more.",
+    "borang akademik": "Semua borang akademik boleh dimuat turun di FAQ Centre: https://sites.google.com/unimap.edu.my/ur6523003faq/academic-forms. Borang termasuk gugur subjek, tarik diri, tangguh pengajian, pertukaran program dan lain-lain.",
+    "curriculum structure": "Curriculum structure depends on your intake year identified by matric number prefix. Check your structure at: https://sites.google.com/unimap.edu.my/ur6523003faq/curriculum-structure",
+    "struktur kurikulum": "Struktur kurikulum bergantung kepada tahun pengambilan yang boleh dikenal pasti melalui awalan nombor matrik. Semak struktur anda di: https://sites.google.com/unimap.edu.my/ur6523003faq/curriculum-structure",
+    "fyp coordinator": "FYP Coordinator is Dr. Hassrizal Hassan Basri. Email: hassrizal@unimap.edu.my | WhatsApp: https://wa.me/601137007588",
+    "idp coordinator": "IDP Coordinator is Assoc. Prof. Dr. Muhammad Khairul Ali Hassan. Email: khairulhassan@unimap.edu.my | WhatsApp: https://wa.me/60124226670",
+    "class timetable": "Class timetable for all FKTE programmes is available at: https://sites.google.com/unimap.edu.my/academicunimap/class-timetable",
+    "jadual kuliah": "Jadual kuliah untuk semua program FKTE boleh didapati di: https://sites.google.com/unimap.edu.my/academicunimap/class-timetable",
+    "academic calendar": "Academic Calendar with all important dates is at: https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-calendar. Contact Shazlina Isakh (shazlina@unimap.edu.my) for specific queries.",
+    "kalendar akademik": "Kalendar Akademik dengan semua tarikh penting boleh didapati di: https://www.unimap.edu.my/index.php/en/campus-life/reference/academic-calendar",
+    "dress code": "UniMAP has strict dress code. Students must wear proper attire on campus. Full guidelines at: https://www.unimap.edu.my/index.php/en/campus-life/reference/student-dress-code",
+    "kod pakaian": "UniMAP mempunyai kod pakaian yang ketat. Pelajar mesti berpakaian sesuai di kampus. Panduan penuh di: https://www.unimap.edu.my/index.php/en/campus-life/reference/student-dress-code",
+    "assistant registrar": "Assistant Registrar is Mdm. Hanimah Karjoo. Email: hanimah@unimap.edu.my | WhatsApp: https://wa.me/601137243477",
+    "penolong pendaftar": "Penolong Pendaftar ialah Mdm. Hanimah Karjoo. Email: hanimah@unimap.edu.my | WhatsApp: https://wa.me/601137243477",
 }
 
 response_cache = {}
@@ -330,13 +335,18 @@ Retrieved Context:
 
 Student Question: {user_message}
 
-Answer based on the context and system prompt above. Be helpful, concise and accurate."""
+Give a DIRECT and COMPLETE answer based on the context above.
+Explain the answer fully first, then provide links as additional reference.
+NEVER just say refer to this link — always give the actual answer directly."""
         else:
             prompt = f"""{SYSTEM_PROMPT}
 
 Student Question: {user_message}
 
-Answer based on your knowledge above. If unsure, direct to FAQ Centre or relevant contact."""
+Give a DIRECT and COMPLETE answer to the student question.
+DO NOT just give links — explain the answer fully first.
+Only provide links AFTER the full explanation as additional reference.
+Be specific and answer like a knowledgeable academic advisor who knows UniMAP rules well."""
 
         # Strategy 4: Call Gemini
         try:
