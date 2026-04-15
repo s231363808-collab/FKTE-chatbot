@@ -17,7 +17,7 @@ genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 MODEL_NAME = "gemini-2.5-flash"
 
 TEMPERATURE = 0.1
-MAX_TOKENS = 800
+MAX_TOKENS = 1500
 MAX_HISTORY = 6
 RATE_LIMIT_WAIT = 5
 MAX_RETRIES = 2
