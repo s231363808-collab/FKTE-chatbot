@@ -21,7 +21,7 @@ MODEL_NAME = "gemini-2.5-flash"  # Best free model for speed + quality
 
 # === CONFIGURATION ===
 TEMPERATURE = 0.1          # Low = factual, consistent answers
-MAX_TOKENS = 400           # Keep answers concise to save tokens
+MAX_TOKENS = 1000           # Keep answers concise to save tokens
 MAX_HISTORY = 4            # Limit conversation turns
 RATE_LIMIT_WAIT = 5        # Seconds to wait if rate limited
 MAX_RETRIES = 2            # Retry attempts for transient errors
